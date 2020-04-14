@@ -5,21 +5,21 @@ class test:
     def cases(self):
         a=lru(3)
         a.put("moksh")
-        assert gets.get("moksh") == "Hello moksh","Testcase failed"
+        assert a.get("moksh") == "Hello moksh","Testcase failed"
         print("Testcase1 Passed")
         a.put("reetu")
-        assert gets.get("reetu") == "Hello reetu","Testcase failed"
+        assert a.get("reetu") == "Hello reetu","Testcase failed"
         print("Testcase1 Passed")
         a.put("teja")
-        assert gets.get("teja") == "Hello teja","Testcase failed"
+        assert a.get("teja") == "Hello teja","Testcase failed"
         print("Testcase1 Passed")
         a.put("suraj")
-        assert gets.get("suraj") == "Hello suraj","Testcase failed"
+        assert a.get("suraj") == "Hello suraj","Testcase failed"
         print("Testcase1 Passed")
         a.put("dipika")
-        assert gets.get("moksh") == None ,"Failed"
+        assert a.get("moksh") == None ,"Failed"
         print("All test cases passed")
-        lists = gets.get_cache()
+        lists = a.getcache()
         for i in lists:
             print(i)
 
