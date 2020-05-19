@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>todolist</title>
+
+</head>
+
+<body>
+    <div id=app></div>
+
+    <script type="text/babel">
+        class Todo extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    tasks: [],
+                    input: "",
+                }
+            }
+
+
+            render() {
+                return (
+
+                    <div>
+
+                        <h1>To do list</h1>
+                        Number of tasks : {this.state.tasks.length}
+                        <ul>
+                            {this.state.tasks.map((task, i) =>
+                                <li key={i}>
+                                    <input type="checkbox" onClick={this.strikeTask} />
+                                    {task}
+                                    <button data-index={i} onClick={this.deleteTask} >delete</button></li>
+
+                            )}
+                        </ul>
+                        <div>
+                            <input onChange={this.handleTask} value={this.state.input} />
+                            <button onClick={this.addTask}>add task</button>
+                        </div>
+                    </div>
+                )
+            }
+            handleTask = (event) => {
+                this.setState({
+                    input: event.target.value
+                });
+            }
+            addTask = (event) => {
+                this.setState(state => ({
+                    tasks: [...state.tasks, state.input],
+                    input: ""
+
+                })
+                )
+            }
+
+            deleteTask = (event) => {
+                const index = event.target.dataset.index;
+                this.setState(state => {
+                    const tasks = [...this.state.tasks];
+                    tasks.splice(index, 1);
+                    return {
+                        tasks: tasks
+                    };
+                })
+            }
+            // strikeTask = (event) => {
+            //     task.strike()
+            // }
+        }
+
+        ReactDOM.render(<Todo />, document.querySelector("#app"))
+
+    </script>
+</body>
+
+</html>
